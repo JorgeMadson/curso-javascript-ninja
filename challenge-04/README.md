@@ -7,15 +7,16 @@ um único parâmetro como argumento. Essa função deve retornar `true` se o
 equivalente booleano para o valor passado no argumento for `true`, ou `false`
 para o contrário.
 */
-function isTruthy(a) { return a ? true : false };
+var isTruthy = function(a) { return !!a; };
 
 // Invoque a função criada acima, passando todos os tipos de valores `falsy`.
 isTruthy(false);
 isTruthy(0);
+isTruthy(-0);
 isTruthy(null);
 isTruthy(undefined);
 isTruthy('');
-isTruthy({}.atributo);
+isTruthy(NaN);
 
 /*
 Invoque a função criada acima passando como parâmetro 10 valores `truthy`.
@@ -42,7 +43,16 @@ seguintes propriedades (os valores devem ser do tipo mostrado abaixo):
 - `assentos` - Number - cinco por padrão
 - `quantidadePessoas` - Number - zero por padrão
 */
-var carro = {marca:String, modelo:'', placa:'',ano:Number, cor:String, quantasPortas:0, assentos: 5, quantidadePessoas:0}
+var carro = { 
+  marca:String,
+  modelo:'',
+  placa:'',
+  ano:Number,
+  cor:String,
+  quantasPortas:0,
+  assentos: 5,
+  quantidadePessoas:0
+};
 
 /*
 Crie um método chamado `mudarCor` que mude a cor do carro conforme a cor
@@ -70,7 +80,9 @@ Crie um método chamado `obterMarcaModelo`, que retorne:
 "Esse carro é um [MARCA] [MODELO]"
 Para retornar os valores de marca e modelo, utilize os métodos criados.
 */
-carro.obterMarcaModelo = function () { return 'Esse carro é um ' + carro.marca + ' ' + carro.modelo; };
+carro.obterMarcaModelo = function () { 
+  return 'Esse carro é um ' + carro.obterMarca() + ' ' + carro.obterModelo(); 
+};
 
 /*
 Crie um método que irá adicionar pessoas no carro. Esse método terá as
