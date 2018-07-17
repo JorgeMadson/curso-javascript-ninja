@@ -57,23 +57,25 @@ os livros.
 */
 function book(nome) {
   var objeto = {
+    nomeDeLivro : {
    quantidadePaginas: Number,
    autor: String,
-   editora: String
+   editora: String }
   };
+return nome ? objeto : objeto;
 };
 
 /*
 Usando a função criada acima, imprima o objeto com todos os livros.
 */
-// ?
+book(); //Object { nomeDeLivro: {…} }
 
 /*
 Ainda com a função acima, imprima a quantidade de páginas de um livro qualquer,
 usando a frase:
 "O livro [NOME_DO_LIVRO] tem [X] páginas!"
 */
-// ?
+
 
 /*
 Ainda com a função acima, imprima o nome do autor de um livro qualquer, usando
