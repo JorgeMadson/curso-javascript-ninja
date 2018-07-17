@@ -103,7 +103,7 @@ citado acima, no lugar de "pessoas".
 carro.adicionarPessoas = function (qnt) {
     var vagas = carro.assentos - carro.quantidadePessoas;
 
-    if (carro.assentos == carro.quantidadePessoas) {
+    if (carro.assentos == carro.quantidadePessoas && qnt >= vagas) {
       return 'O carro já está lotado!';
     }
 
