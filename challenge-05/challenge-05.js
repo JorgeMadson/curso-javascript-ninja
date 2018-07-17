@@ -14,7 +14,7 @@ function retornaArray (vetor) {
 /*
 Imprima o segundo índice do array retornado pela função criada acima.
 */
-retornaArray(qualquer)[1];
+console.log(retornaArray(qualquer)[1]);
 
 /*
 Crie uma função que receba dois parâmetros: o primeiro, um array de valores; e o
@@ -35,11 +35,11 @@ var diferente = [ 1, 'jorge', null, {num: 1}, NaN];
 Invoque a função criada acima, fazendo-a retornar todos os valores do último
 array criado.
 */
-doisParametros(diferente, 0); //1
-doisParametros(diferente, 1); //"jorge"
-doisParametros(diferente, 2); //null
-doisParametros(diferente, 3); //{num: 1}
-doisParametros(diferente, 4); //NaN
+console.log(doisParametros(diferente, 0)); //1
+console.log(doisParametros(diferente, 1)); //"jorge"
+console.log(doisParametros(diferente, 2)); //null
+console.log(doisParametros(diferente, 3)); //{num: 1}
+console.log(doisParametros(diferente, 4)); //NaN
 
 /*
 Crie uma função chamada `book`, que recebe um parâmetro, que será o nome do
@@ -68,7 +68,7 @@ return nome ? objeto : objeto;
 /*
 Usando a função criada acima, imprima o objeto com todos os livros.
 */
-book(); //Object { nomeDeLivro: {…} }
+console.log(book()); //Object { nomeDeLivro: {…} }
 
 /*
 Ainda com a função acima, imprima a quantidade de páginas de um livro qualquer,
