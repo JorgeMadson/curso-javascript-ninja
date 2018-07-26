@@ -82,11 +82,11 @@ Ainda com a função acima, imprima o nome do autor de um livro qualquer, usando
 a frase:
 "O autor do livro [NOME_DO_LIVRO] é [AUTOR]."
 */
-console.log('O livro '+ bookName +' tem '+ book(bookName).autor + ' páginas!');
+console.log('O autor do livro '+ bookName +' é '+ book(bookName).autor + '.');
 
 /*
 Ainda com a função acima, imprima o nome da editora de um livro qualquer, usando
 a frase:
 "O livro [NOME_DO_LIVRO] foi publicado pela editora [NOME_DA_EDITORA]."
 */
-console.log('O livro '+ bookName +' tem '+ book(bookName).editora + ' páginas!');
+console.log('O livro '+ bookName +' foi publicado pela editora '+ book(bookName).editora + '.');
