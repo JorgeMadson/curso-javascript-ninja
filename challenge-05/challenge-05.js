@@ -57,12 +57,11 @@ os livros.
 */
 function book(nome) {
   var objeto = {
-    nomeDeLivro : {
-   quantidadePaginas: Number,
-   autor: String,
-   editora: String }
+    'Livro do Jorge': { quantidadePaginas: 15, autor: 'Jorge', editora: 'Novatec' },
+    'Orgulho e Preconceito': { quantidadePaginas: 500, autor: 'Jane Austen', editora: 'sei la' },
+    'Encontro Marcado': { quantidadePaginas: 200, autor: 'Fernando Pessoa', editora: 'sei la' }
   };
-return nome ? objeto : objeto;
+  return nome ? objeto[nome] : objeto;
 };
 
 /*
@@ -75,18 +74,19 @@ Ainda com a função acima, imprima a quantidade de páginas de um livro qualque
 usando a frase:
 "O livro [NOME_DO_LIVRO] tem [X] páginas!"
 */
-
+var bookName = 'Livro do Jorge';
+console.log('O livro '+ bookName +' tem '+ book(bookName).quantidadePaginas + ' páginas!');
 
 /*
 Ainda com a função acima, imprima o nome do autor de um livro qualquer, usando
 a frase:
 "O autor do livro [NOME_DO_LIVRO] é [AUTOR]."
 */
-// ?
+console.log('O livro '+ bookName +' tem '+ book(bookName).autor + ' páginas!');
 
 /*
 Ainda com a função acima, imprima o nome da editora de um livro qualquer, usando
 a frase:
 "O livro [NOME_DO_LIVRO] foi publicado pela editora [NOME_DA_EDITORA]."
 */
-// ?
+console.log('O livro '+ bookName +' tem '+ book(bookName).editora + ' páginas!');
