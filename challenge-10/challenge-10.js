@@ -62,15 +62,16 @@ e faça a indentação correta.
     operador passado para a função "calculator", e passando para esse método
     os dois parâmetros da função de retorno de "calculator".
     */
-    function calculator( operador ) {
-        if(isOperatorValid(operador))
-            return function(number1,number2) {
-                if (typeof number1 !== Number || typeof number2 !== Number){
-                    
+    function calculator(operador) {
+        if (isOperatorValid(operador)) {
+            return function (number1, number2) {
+                if (typeof number1 === 'number' && typeof number2 === 'number') {
+                    return operation[operador](number1,number2);
                 }
-            }   
+                return false;
+            }
+        }
         return false;
-        
     }
 
     /*
@@ -80,7 +81,9 @@ e faça a indentação correta.
     'A operação [NUMBER1] [OPERATOR] [NUMBER2] =';
     Essa função mostrará a mensagem da operação que criaremos mais abaixo.
     */
-    // ?
+    function showOperationMessage(operador, number1, number2) {
+        return 'A operação ' + operador + String(number1) + String(number2) + '=' + operation[operador](number1, number2);
+    }
 
     /*
     Crie uma função chamada "showErrorMessage" que recebe um parâmetro: o
@@ -88,7 +91,10 @@ e faça a indentação correta.
     Essa função deverá retornar a frase:
     'Operação "[OPERATOR]" não permitida!'
     */
-    // ?
+    function showErrorMessage(operador) {
+        if (!isOperatorValid(operador))
+            return 'Operação '+ operador +' não permitida!';
+    }
 
     /*
     Nossa calculadora está pronta! Agora vamos testá-la:
@@ -96,7 +102,9 @@ e faça a indentação correta.
     - Declare 3 variáveis: "number1" e "number2", iniciando com valor zero, e
     "operationSignal", sem valor por enquanto.
     */
-    // ?
+    var number1 = 0;
+    var number2 = 0;
+    var operationSignal;
 
     /*
     PASSO 2:
@@ -104,7 +112,8 @@ e faça a indentação correta.
     variável chamada "sum", que receba a função "calculator", passando por
     parâmetro a variável que recebeu o sinal da operação.
     */
-    // ?
+    operationSignal = '+';
+    var sum = calculator(operationSignal);
 
     /*
     PASSO 3:
@@ -118,18 +127,28 @@ e faça a indentação correta.
     - O segundo, a função de soma, passando os dois operandos.
     - Se "sum" for "false", mostrar no console a mensagem de erro.
     */
-    // ?
+    number1 = 5;
+    number2 = 6;
+    console.log(sum(number1,number2));
 
     /*
     Repita desde o "PASSO 2" com as operações de subtração, multiplicação,
     divisão e resto. Crie variáveis com os nomes "subtraction",
     "multiplication", "division" e "mod".
     */
-    // ?
+    var subtraction = calculator('-');
+    console.log(subtraction(number1,number2));
+    var multiplication = calculator('*');
+    console.log(multiplication(number1,number2));
+    var division = calculator('/');
+    console.log(division(number1,number2));
+    var mod = calculator('%');
+    console.log(mod(number1,number2));
 
     /*
     Repita o PASSO 2 novamente, mas passando um operador inválido, para ver se
     a mensagem de erro será mostrada no console.
     */
-    // ?
+    var invalido = calculator('a');
+    console.log(invalido(number1,number2));
 })();
