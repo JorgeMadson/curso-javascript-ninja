@@ -44,10 +44,7 @@ e faça a indentação correta.
     - O desafio é fazer o retorno sem usar "if" ou "switch".
     */
     function isOperatorValid(operador) {
-        for (var key in operation)
-            if (operador === key)
-                return true;
-        return false;
+        return !!operation[operador];
     }
 
     /*
@@ -64,10 +61,11 @@ e faça a indentação correta.
     */
     function calculator(operador) {
         if (isOperatorValid(operador)) {
-            return function (number1, number2) {
+            return function (number1, number2) { 
                 if (typeof number1 === 'number' && typeof number2 === 'number') {
                     return operation[operador](number1,number2);
                 }
+                
                 return false;
             }
         }
@@ -82,7 +80,7 @@ e faça a indentação correta.
     Essa função mostrará a mensagem da operação que criaremos mais abaixo.
     */
     function showOperationMessage(operador, number1, number2) {
-        return 'A operação ' + operador + String(number1) + String(number2) + '=' + operation[operador](number1, number2);
+        return 'A operação ' + String(number1) + operador + String(number2) + ' =';
     }
 
     /*
@@ -93,7 +91,7 @@ e faça a indentação correta.
     */
     function showErrorMessage(operador) {
         if (!isOperatorValid(operador))
-            return 'Operação '+ operador +' não permitida!';
+            return 'Operação \''+ operador +'\' não permitida!';
     }
 
     /*
@@ -127,28 +125,49 @@ e faça a indentação correta.
     - O segundo, a função de soma, passando os dois operandos.
     - Se "sum" for "false", mostrar no console a mensagem de erro.
     */
-    number1 = 5;
-    number2 = 6;
-    console.log(sum(number1,number2));
-
+    if (sum) {
+        number1 = 5;
+        number2 = 6;
+        console.log(showOperationMessage(operationSignal, number1, number2), sum(number1, number2));
+    }
+    else {
+        showErrorMessage(operationSignal);
+    }  
     /*
     Repita desde o "PASSO 2" com as operações de subtração, multiplicação,
     divisão e resto. Crie variáveis com os nomes "subtraction",
     "multiplication", "division" e "mod".
     */
-    var subtraction = calculator('-');
-    console.log(subtraction(number1,number2));
-    var multiplication = calculator('*');
-    console.log(multiplication(number1,number2));
-    var division = calculator('/');
-    console.log(division(number1,number2));
-    var mod = calculator('%');
-    console.log(mod(number1,number2));
+
+    //Minha função pra evitar o copiar colar de código
+    function logOperation(operationType) {
+        if (operationType)
+            console.log(showOperationMessage(operationSignal, number1, number2), operationType(number1, number2));
+        else
+            console.log(showErrorMessage(operationSignal));
+    }
+
+    operationSignal = '-';
+    var subtraction = calculator(operationSignal);
+    logOperation(subtraction);
+    
+    operationSignal = '*';
+    var multiplication = calculator(operationSignal);
+    logOperation(multiplication);
+    
+    operationSignal = '/';
+    var division = calculator(operationSignal);
+    logOperation(division);
+    
+    operationSignal = '%';
+    var mod = calculator(operationSignal);
+    logOperation(mod);
 
     /*
     Repita o PASSO 2 novamente, mas passando um operador inválido, para ver se
     a mensagem de erro será mostrada no console.
     */
-    var invalido = calculator('a');
-    console.log(invalido(number1,number2));
+    operationSignal = 'a';
+    var invalido = calculator(operationSignal);
+    logOperation(invalido);
 })();
