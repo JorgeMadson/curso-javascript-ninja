@@ -23,7 +23,7 @@
     */
     console.log('\nJust Numbers:');
     var justNumbers = [];
-    numberObjects.forEach(function (item) {
+    numberObjects.map(function (item) {
         justNumbers.push(item.number);
     });
     console.log(justNumbers);
@@ -35,7 +35,7 @@
     */
     console.log('\nJust module of division by 2 or 3:');
 
-    var justMod2Or3  = justNumbers.filter(function (valor, indice, array) {
+    var justMod2Or3 = justNumbers.filter(function (valor) {
         return valor % 2 == 0 || valor % 3 == 0;
     });
     console.log(justMod2Or3);
@@ -48,11 +48,9 @@
     Mostre o resultado no console.
     */
     console.log('\nOperation:');
-    var operation = justMod2Or3.reduce(function(acumulador, atual, indiceAtual, array) {
-        acumulador++;
-        acumulador *= atual;
-        return acumulador;
-    });
+    var operation = justMod2Or3.reduce(function (acumulador, atual) {
+        return (acumulador + 1) * atual;
+    }, 0);
     console.log(operation);
     /*
     Faça o mesmo cálculo passado acima, mas começando do último item para o
@@ -60,11 +58,9 @@
     console.
     */
     console.log('\nOperation 2:');
-    var operation2 = justMod2Or3.reduceRight(function(acumulador, atual, indiceAtual, array) {
-        acumulador++;
-        acumulador *= atual;
-        return acumulador;
-    });
+    var operation2 = justMod2Or3.reduceRight(function (acumulador, atual) {
+        return (acumulador + 1) * atual;
+    }, 0);
     console.log(operation2);
 
     /*
@@ -78,8 +74,8 @@
     console.log('\nSeu nome na língua do "P":');
     var name = ['Jor', 'ge'];
     var linguaPname = name.reduce(function (acumulador, atual) {
-        return acumulador += 'p' + atual;
-    });
+        return acumulador + 'P' + atual;
+    }, '');
     console.log(linguaPname);
 
     /*
@@ -87,9 +83,10 @@
     e atribuirá o seu nome invertido (usando o array criado acima).
     */
     console.log('\nInversed Name:');
-    var inversedName =  name.reduceRight(function(acumulador, atual){
+    var inversedName = name.reduceRight(function (acumulador, atual) {
         return acumulador += atual;
     });
+    console.log(inversedName);
 
     /*
     Mostre no console o array `numberObjects`.
@@ -108,7 +105,7 @@
     */
     console.log('\nExiste um { number: 2 } em numberObjects?');
     console.log(
-        numberObjects.some(function (atual) {return atual.number = 2;})
+        numberObjects.indexOf(numberObjects[1]) > -1
             ? 'Existe um objeto { number: 2 } em numberObjects!'
             : 'Não existe um objeto { number: 2 } em numberObjects :('
     );
@@ -118,7 +115,7 @@
     */
     console.log('\nE buscando a partir do último índice, o { number: 2 } existe?');
     console.log(
-        numberObjects.some(function (atual) {return atual.number = 2;})
+        numberObjects.lastIndexOf(numberObjects[1], 2) > -1
             ? 'Existe um objeto { number: 2 } em numberObjects!'
             : 'Não existe um objeto { number: 2 } em numberObjects :('
     );
@@ -129,8 +126,8 @@
     */
     console.log('\njustMod2Or3 é um array? Se for, a representação dele em String é:');
     console.log(
-        Array.isArray(justMod2Or3) 
-        ? justMod2Or3.toString()
-        : ''
+        Array.isArray(justMod2Or3)
+            ? justMod2Or3.toString()
+            : ''
     );
 })();
