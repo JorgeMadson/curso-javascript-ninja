@@ -1,3 +1,10 @@
+/*Minha revisão
+Filter = callback só precisa retornar o true ou false
+map = aplica o callback pra cada item e retorna esse item pra uma nova array
+Com retorna eu quero dizer que vc tem que por um `return` na função.
+forEach = não retorna nada, se quiser retorna faz uma dentro da função
+every/some = retorna true/false se tiver todos ou um item der true na função.
+*/
 (function () {/*
 Envolva todo o código desse desafio em uma IIFE.
 */
@@ -9,14 +16,14 @@ Envolva todo o código desse desafio em uma IIFE.
     console.log('O array em formato de string é:');
     var arr = [1, 2, 3, 4];
 
-    console.log(arr.join(''));
+    console.log(arr.toString());
 
     /*
     Crie 2 arrays `sul` e `sudeste`, que serão as regiões do Brasil.
     Cada array deve conter os estados dessa região.
     */
     var sul = ['Paraná', 'Santa Catarina', 'Rio Grande do Sul'];
-    var sudeste = ['São Paulo', 'Espirito Santo', 'Rio de Janeiro'];
+    var sudeste = ['São Paulo', 'Espirito Santo', 'Minas Gerais', 'Rio de Janeiro'];
 
 
     /*
@@ -75,13 +82,13 @@ Envolva todo o código desse desafio em uma IIFE.
     chamada `newSudeste`.
     */
 
-    var newSudeste = brasil.slice(2, 5);
+    var newSudeste = brasil.splice(2, 4);
 
     /*
     Adicione os estados do `nordeste` ao array `brasil`. Esses estados devem
     ficar no mesmo nível que os estados já existentes, não em um array separado.
     */
-    nordeste.forEach(function (item) { brasil.push(item) });
+    brasil = brasil.concat(nordeste);
 
     /*
     Mostre no console os estados em `newSudeste`.
@@ -103,7 +110,7 @@ Envolva todo o código desse desafio em uma IIFE.
     - `estado`: que será o estado do array `brasil`.
     */
 
-    var newBrasil =  [];
+    var newBrasil = [];
     brasil.forEach(function (item, index) { newBrasil.push({ id: index, estado: item }); });
 
     /*
@@ -120,14 +127,15 @@ Envolva todo o código desse desafio em uma IIFE.
     - "Nem todos os estados tem mais de 7 letras!"
     */
     console.log('\nTodos os estados de `brasil` tem mais de 7 letras?');
-    var estadosTemMaisQue7Letrar =  brasil.every( function(item) { item.length > 7 } );
+    var estadosTemMaisQue7Letrar = brasil.every(function (item) {
+        return item.length > 7;
+    });
 
-    if (estadosTemMaisQue7Letrar) {
-        console.log('Sim, todos os estados tem mais de 7 letras!');
-    }
-    else {
-        console.log('Nem todos os estados tem mais de 7 letras!');
-    }
+    console.log(
+        estadosTemMaisQue7Letrar
+            ? 'Sim, todos os estados tem mais de 7 letras!'
+            : 'Nem todos os estados tem mais de 7 letras!'
+    );
 
     /*
     Percorra o array `brasil` e verifique se o Ceará está incluído, atribuindo o
@@ -138,13 +146,15 @@ Envolva todo o código desse desafio em uma IIFE.
     - "Ceará não foi incluído :("
     */
     console.log('\nCeará está incluído em `brasil`?');
-    var cearaEsta = brasil.filter(function(item){ item === 'Ceará'; })
-    if (cearaEsta) {
-        console.log("Ceará está incluído!");
-    }
-    else {
-        console.log('Ceará não foi incluído :(');
-    }
+    var cearaEsta = brasil.some(function (item) {
+        return item === 'Ceará';
+    });
+
+    console.log(
+        cearaEsta
+            ? 'Ceará está incluído!'
+            : 'Ceará não foi incluído :(');
+
     /*
     Percorra o array `newBrasil` e crie um novo array que some 1 no ID de cada
     objeto desse array, e adicione a frase abaixo na propriedade `estado`:
@@ -152,9 +162,8 @@ Envolva todo o código desse desafio em uma IIFE.
     Atribua o novo array a uma variável chamada `map`.
     */
 
-    var map = newBrasil.map(function (item, index) {
-        item.id = item.id + 1; item.estado = item.estado + ' pertence ao Brasil.';
-        return {id: item.id, estado: item.estado};
+    var map = newBrasil.map(function (item) {
+        return { id: item.id + 1, estado: item.estado + ' pertence ao Brasil.' };
     });
     /*
     Mostre no console o array criado acima:
@@ -166,7 +175,7 @@ Envolva todo o código desse desafio em uma IIFE.
     Filtre o array criado acima, retornando somente os estados que tiverem
     ID par. Atribua o valor à uma variável chamada `filter`.
     */
-    var mapEstadosPares = map.filter(function (item,index) {
+    var mapEstadosPares = map.filter(function (item) {
         return item.id % 2 === 0;
     });
 
