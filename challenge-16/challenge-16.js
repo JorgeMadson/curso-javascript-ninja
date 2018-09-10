@@ -34,8 +34,9 @@
   console.log para cada formato.
   */
   console.log('\nNome convertido à partir de um slug:');
-  var fullName = 'Jorge Madson';
-  console.log(fullName.toLowerCase().split(' ').join('-'));
+  var fullName = 'jorge-madson-santos-viana';
+  console.log(fullName);
+  console.log(fullName.split('-').map(function(nome){ return nome[0].toUpperCase() + nome.slice(1)}).join(' '));
 
   /*
   - Crie um array com 5 nomes. Reduza esses nomes a uma única string, separando
