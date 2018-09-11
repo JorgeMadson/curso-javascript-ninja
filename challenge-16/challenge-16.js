@@ -16,7 +16,7 @@
   E assim por diante, até a última.
   */
   console.log('As letras do seu nome:');
-  var name = 'Ingra';
+  var name = 'Jorge';
   name.split('').forEach(function (letra, indice) {
     console.log(letra + ' é a ' + (indice + 1) + 'ª letra do meu nome.');
   });
@@ -34,7 +34,7 @@
   console.log para cada formato.
   */
   console.log('\nNome convertido à partir de um slug:');
-  var fullName = 'ingra-icocharski-santos-viana';
+  var fullName = 'jorge-madson-santos-viana';
   console.log(fullName);
   console.log(fullName.split('-').map(function (nome) { return nome[0].toUpperCase() + nome.slice(1) }).join(' '));
 
