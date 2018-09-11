@@ -16,7 +16,7 @@
   E assim por diante, até a última.
   */
   console.log('As letras do seu nome:');
-  var name = 'Jorge';
+  var name = 'Ingra';
   name.split('').forEach(function (letra, indice) {
     console.log(letra + ' é a ' + (indice + 1) + 'ª letra do meu nome.');
   });
@@ -34,9 +34,9 @@
   console.log para cada formato.
   */
   console.log('\nNome convertido à partir de um slug:');
-  var fullName = 'jorge-madson-santos-viana';
+  var fullName = 'ingra-icocharski-santos-viana';
   console.log(fullName);
-  console.log(fullName.split('-').map(function(nome){ return nome[0].toUpperCase() + nome.slice(1)}).join(' '));
+  console.log(fullName.split('-').map(function (nome) { return nome[0].toUpperCase() + nome.slice(1) }).join(' '));
 
   /*
   - Crie um array com 5 nomes. Reduza esses nomes a uma única string, separando
@@ -49,11 +49,12 @@
   */
   console.log('\nMeus amigos:');
   var amigos = ['Vitória', 'Amaral', 'Son', 'Jian', 'Pai'];
+
   console.log(
-    amigos.slice(0, amigos.length - 2).join(', ')
-    + ', '
-    + amigos.slice(amigos.length - 2, amigos.length).join(' e ')
-    + ' são meus amigos.'
+    amigos.reduce(function (acumulador, atual, indice) {
+      var separador = indice === amigos.length - 1 ? ' e ' : ', ';
+      return acumulador + separador + atual;
+    }).concat(' são meus amigos.')
   );
 
   /*
@@ -61,14 +62,14 @@
   Mostre o resultado no console.
   */
   console.log('\nEra "Roberto", agora é:');
-  console.log('Roberto'.replace('o', 'a'));
+  console.log('Roberto'.replace('to', 'ta'));
 
   /*
   Mostre no console a parte "nando" da string "Fernando". Use o método que
   faz a busca do final para o início da string.
   */
   console.log('\nParte de uma string:');
-  console.log('Fernando'.substring(3));
+  console.log('Fernando'.substring(8,3));
 
   /*
   Declare uma variável chamada `myName`, que receba o seu primeiro nome,
