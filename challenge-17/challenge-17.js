@@ -1,4 +1,4 @@
-(function () {
+﻿(function () {
     'use strict';
     /*
     1. Envolva todo o conteúdo desse desafio em uma IIFE.
@@ -117,7 +117,7 @@
         return numeroMes;
     }
     var mes = 'Março';
-    console.log('O mês de '+ mes +' é representado pelo número '+ getMonthNumber(mes.toLowerCase()) +'.');
+    console.log('O mês de ' + mes + ' é representado pelo número ' + getMonthNumber(mes.toLowerCase()) + '.');
     /*
     Agora, declare uma variável chamada `regexDate` que irá receber a expressão
     regular que irá fazer o match com as datas. Crie grupos de captura para o
@@ -126,7 +126,7 @@
     Com o que vimos até agora, você consegue fazer :D
     Mostre a regex no console.
     */
-    console.log('\nRegex que vai fazer o match com as datas do texto:');    
+    console.log('\nRegex que vai fazer o match com as datas do texto:');
     var regexDate = /(\d\d )|(junho)|(julho)|(\d\d\d\d)/gi;
     console.log(regexDate);
 
@@ -144,7 +144,7 @@
         console.log(dia, mes, ano);
         return (dia + getMonthNumber(mes) + ano);
     }
-    console.log(text.replace(regexDate,replaceDate()));
+    console.log(text.replace(regexDate, replaceDate()));
     console.log('Dá um monte de undefined, mas meu match mostra qui funciona!');
     console.log(text.match(regexDate));
 })();
