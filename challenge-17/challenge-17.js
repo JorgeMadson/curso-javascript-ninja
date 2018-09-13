@@ -123,6 +123,4 @@
         return dia + '/' + getMonthNumber(mes) + '/' + ano;
     }
     console.log(text.replace(regexDate, replaceDate));
-    console.log('Dá um monte de undefined, mas meu match mostra qui funciona!');
-    console.log(text.match(regexDate));
 })();
