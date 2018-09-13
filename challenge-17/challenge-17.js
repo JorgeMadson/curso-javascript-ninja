@@ -20,8 +20,7 @@
     no console:
     */
     console.log('Adicionando seu nome no texto:');
-    text = text.replace('Manuel Marques de Sousa', 'Jorge Madson Santos Viana');
-    console.log(text);
+    console.log(text.replace('Manuel Marques de Sousa', 'Jorge Madson Santos Viana'));
 
     /*
     Agora, substitua a palavra "brasileiro" por sua cidade natal e mostre no
@@ -29,16 +28,14 @@
     Ex: Se você for da São Paulo, substitua por "paulista".
     */
     console.log('\nTrocando naturalidade:');
-    text = text.replace('brasileiro', 'paraense');
-    console.log(text);
+    console.log(text.replace('brasileiro', 'paraense'));
 
     /*
     Substitua todos os números por um traço `-`. Cada caractere de número deve
     ser um traço. Mostre o resultado no console:
     */
     console.log('\nTrocando números por -:');
-    text = text.replace(/\d/g,'-');
-    console.log(text);
+    console.log(text.replace(/\d/g, '-'));
 
 
     /*
@@ -46,23 +43,21 @@
     minúsculo por "0" (número zero). Mostre o resultado no console:
     */
     console.log('\nTrocando de "D" a "h" por "0":');
-    text = text.replace(/[D-h]/g,'0');
-    console.log(text);
+    console.log(text.replace(/[D-h]/g, '0'));
 
     /*
     Substitua todos os "A" (maiúsculos ou minúsculos) por "4".
     Mostre o resultado no console:
     */
     console.log('\nTrocando "A" e "a" por "4":');
-    text = text.replace(/a/gi,'4');
-    console.log(text);
+    console.log(text.replace(/a/gi, '4'));
 
     /*
     Substitua a frase "O Centauro de Luvas", deixando-a em caixa alta, usando
     o método `toUpperCase()`. Mostre o resultado no console:
     */
     console.log('\n"O Centauro de Luvas" em caixa alta:');
-    // ?
+    console.log(text.replace(/O Centauro de Luvas/g, 'O CENTAURO DE LUVAS'));
 
     /*
     Agora iremos substituir as datas no formato "13 de junho de 1804" para
@@ -77,8 +72,52 @@
     "O mês de [NOME DO MÊS] é representado pelo número [NÚMERO DO MÊS]."
     */
     console.log('\nMeses representados por números:');
-    // ?
-
+    function getMonthNumber(nomeMes) {
+        var numeroMes = '00';
+        switch (nomeMes) {
+            case 'janeiro':
+                numeroMes = '01';
+                break;
+            case 'fevereito':
+                numeroMes = '02';
+                break;
+            case 'março':
+                numeroMes = '03';
+                break;
+            case 'abril':
+                numeroMes = '04';
+                break;
+            case 'maio':
+                numeroMes = '05';
+                break;
+            case 'junho':
+                numeroMes = '06';
+                break;
+            case 'julho':
+                numeroMes = '07';
+                break;
+            case 'agosto':
+                numeroMes = '08';
+                break;
+            case 'setembro':
+                numeroMes = '09';
+                break;
+            case 'outubro':
+                numeroMes = '10';
+                break;
+            case 'novembro':
+                numeroMes = '11';
+                break;
+            case 'dezembro':
+                numeroMes = '12';
+                break;
+            default:
+                numeroMes = '00';
+        }
+        return numeroMes;
+    }
+    var mes = 'Março';
+    console.log('O mês de '+ mes +' é representado pelo número '+ getMonthNumber(mes.toLowerCase()) +'.');
     /*
     Agora, declare uma variável chamada `regexDate` que irá receber a expressão
     regular que irá fazer o match com as datas. Crie grupos de captura para o
@@ -87,8 +126,10 @@
     Com o que vimos até agora, você consegue fazer :D
     Mostre a regex no console.
     */
-    console.log('\nRegex que vai fazer o match com as datas do texto:');
-    // ?
+    console.log('\nRegex que vai fazer o match com as datas do texto:');    
+    var regexDate = /(\d\d )|(junho)|(julho)|(\d\d\d\d)/gi;
+    console.log(regexDate);
+
 
     /*
     Agora crie a função que irá fazer o replace dos dados. A função será chamada
@@ -98,5 +139,12 @@
     console o resultado.
     */
     console.log('\nReplace de datas:');
-    // ?
+    function replaceDate(capturaTotal, dia, mes, ano) {
+        console.log(arguments);
+        console.log(dia, mes, ano);
+        return (dia + getMonthNumber(mes) + ano);
+    }
+    console.log(text.replace(regexDate,replaceDate()));
+    console.log('Dá um monte de undefined, mas meu match mostra qui funciona!');
+    console.log(text.match(regexDate));
 })();
