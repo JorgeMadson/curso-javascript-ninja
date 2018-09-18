@@ -18,7 +18,7 @@
   */
   console.log('Limpando CPFs:');
   function cleanCPF(cpf) {
-    return cpf.replace(/[^\d]/g, '');
+    return cpf.replace(/\D/g, '');
   }
   console.log(cleanCPF("049-214 3421-1"));
   console.log(cleanCPF("210.458.522-05"));
@@ -29,14 +29,11 @@
   Ex.: "999.999.999-99"
   Mostre o resultado no console.
   */
-  function formataCPF(tudo) {
-    return tudo.slice(0, 3) + '.' + tudo.slice(3, 6) + '.' + tudo.slice(6, 9) + '-' + tudo.slice(9, 11)
-  }
   console.log('\nFormatando CPFs corretamente:');
-  console.log(cleanCPF("049-214 3421-1").replace(/\d{11}/, formataCPF));
-  console.log(cleanCPF("210.458.522-05").replace(/\d{11}/, formataCPF));
-  console.log(cleanCPF("735 500 794 - 22").replace(/\d{11}/, formataCPF));
-  console.log(cleanCPF("101.123-131x32").replace(/\d{11}/, formataCPF));
+  console.log(cleanCPF("049-214 3421-1").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'));
+  console.log(cleanCPF("210.458.522-05").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'));
+  console.log(cleanCPF("735 500 794 - 22").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'));
+  console.log(cleanCPF("101.123-131x32").replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4'));
 
   /*
   Crie uma expressão regular que faça match com as palavras "junho" ou "julho",
@@ -100,8 +97,6 @@
   */
   console.log('\nFazer replace dos textos das tags:');
   console.log("<h1>Título da página</h1><p>Este é um parágrafo</p><footer>Rodapé</footer>"
-    .replace(/(<\w*\d?>)([a-zA-Z\u00C0-\u00FF ]+)(<\/\w*\d?>)/gi, function (tudo, tag, texto, fechamentoTag) {
-      return 'O texto dentro da tag "' + tag + '" é: ' + texto + '\n';
-    }));
+    .replace(/(<\w*\d?>)([^<]+)(<\/\w*\d?>)/g, 'O texto dentro da tag "$1" é $2\n'));
 
 })();
