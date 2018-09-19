@@ -24,7 +24,7 @@ linha, independente de quantos caracteres de número estiverem juntos.
 no console:
 */
 console.log( 'Regex para números usando o construtor:' );
-// ?
+var regex = new RegExp('^\\d+', gm);
 
 /*
 Verifique se a regex acima casa com o texto na variável `text`, mostrando o
@@ -33,7 +33,7 @@ resultado no console. O resultado deve ser:
 */
 var text = '10 anos.\n50 discos vendidos.\nE nem 10% dos meus amigos o conhece.';
 console.log( '\nNúmeros no início da linha do texto:\n' + text, '\n' );
-// ?
+regex.test(text);
 
 /*
 - Crie uma regex que case com números no final de uma string. Atribua a
