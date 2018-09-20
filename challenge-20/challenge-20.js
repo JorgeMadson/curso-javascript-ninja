@@ -1,14 +1,14 @@
 (function (win, doc) {
     'use strict';
-/*
-1. Envolva todo o conteúdo desse desafio em uma IIFE.
-2. Adicione a diretiva 'use strict';
-3. Passe por parâmetro para a IIFE os objetos window e document.
-4. Dessa vez não é necessário criar um HTML. Ele já existe, e vamos utilizar
-a marcação criada nele para fazer nosso desafio ;)
-
-O HTML NÃO PODE ser alterado!
-*/
+    /*
+    1. Envolva todo o conteúdo desse desafio em uma IIFE.
+    2. Adicione a diretiva 'use strict';
+    3. Passe por parâmetro para a IIFE os objetos window e document.
+    4. Dessa vez não é necessário criar um HTML. Ele já existe, e vamos utilizar
+    a marcação criada nele para fazer nosso desafio ;)
+    
+    O HTML NÃO PODE ser alterado!
+    */
 
     /*
     Ao carregar a página, pergunte ao usuário "Qual o seu nome?". Atribua o
@@ -18,42 +18,45 @@ O HTML NÃO PODE ser alterado!
     */
     var userName = prompt('Qual seu nome?');
     if (!userName)
-        userName = 'Desconhecido'; 
+        userName = 'Desconhecido';
     alert('Bem vindo ' + userName);
     /*
     Agora, pergunte ao usuário "Qual o seu e-mail?", atribuindo o resultado à
     uma variável chamada `email`.
     */
-   var email = prompt('Qual seu email?');
+    var email = prompt('Qual seu email?');
 
     /*
     - Selecione o input de "Nome", atribuindo-o à uma variável chamada
     `$inputUsername`.
     */
-    var $inputUsername =  doc.querySelectorAll('[type="text"]');
+    var $inputUsername = doc.querySelector('[type="text"]');
     /*
     - Selecione o input de "Email", atribuindo-o à uma variável chamada
     `$inputEmail`.
     */
-   var $inputEmail =  doc.querySelectorAll('[type="email"]');
+    var $inputEmail = doc.querySelector('[type="email"]');
 
     /*
     - Selecione o campo de "Mensagem", atribuindo-o à uma variável chamada
     `$message`.
     */
-   var $message =  doc.querySelectorAll('[type="textarea"]');
+    var $message = doc.querySelector('textarea');
+    console.log($message);
 
     /*
     - Selecione o botão de envio do formulário, atribuindo-o à uma variável
     chamada `$button`.
     */
-    var $button = doc.querySelectorAll('[type="submit]');
+    var $button = doc.querySelector('[type="submit"]');
 
     /*
     Preencha os campos de "Nome" e "Email" que estão no documento com os valores
     entrados pelo usuário.
     */
-    // ?
+    /////apesar de ter só um, tive que pegar o primeiro elemento
+    $inputUsername.value = userName;
+    $inputEmail.value = email;
 
     /*
     Adicione um listener de evento de click ao botão que faça o seguinte:
@@ -79,7 +82,17 @@ O HTML NÃO PODE ser alterado!
     Caso contrário, mostre um alerta com a mensagem:
         - "Não enviado."
     */
-    // ?
+    $button.addEventListener('click', function (evento) {
+        evento.preventDefault();
+        //Validações
+        var nome = $inputUsername.value ? true : alert('Falta o nome');
+        var email = $inputEmail.value ? true : alert('Falta o email');
+        var msg = $message.value ? true : alert('Falta a mensagem');
+        var emailValido = isValidEmail($inputEmail.value) ? true : alert('Email inválido');
+        
+        if (nome && email && msg && emailValido)
+            confirm("Tem certeza que deseja enviar o formulário?") ? alert("Enviado com sucesso!") : alert("Não enviado.");
+    });
 
     /*
     Crie uma função chamada `isValidEmail`, que será usada na validação do
@@ -107,5 +120,7 @@ O HTML NÃO PODE ser alterado!
         - "rita-marica@titica.a.b"
         - "agua_@evida.br.com"
     */
-    // ?
+    function isValidEmail(email) {
+        return /[\w\+\.]+@\w+\.\w{2,}(?:\.\w{2,})?/g.test(email);
+    }
 })(window, document);
