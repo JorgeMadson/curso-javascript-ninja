@@ -85,14 +85,18 @@
     $button.addEventListener('click', function (evento) {
         evento.preventDefault();
         //Validações
-        var nome = $inputUsername.value ? true : alert('Falta o nome');
-        var email = $inputEmail.value ? true : alert('Falta o email');
-        var msg = $message.value ? true : alert('Falta a mensagem');
-        var emailValido = isValidEmail($inputEmail.value) ? true : alert('Email inválido');
-        
-        if (nome && email && msg && emailValido)
-            confirm("Tem certeza que deseja enviar o formulário?") ? alert("Enviado com sucesso!") : alert("Não enviado.");
-    });
+        if (!$inputUsername.value)
+            return alert('Falta o nome');
+        if (!$inputEmail.value)
+            return alert('Falta o email');
+        if (!$message.value)
+            return alert('Falta a mensagem');
+        if (!isValidEmail($inputEmail.value))
+            return alert('Email inválido');
+        if (!confirm("Tem certeza que deseja enviar o formulário?"))
+            return alert("Não enviado.");
+        return alert("Enviado com sucesso!")
+    }, false);
 
     /*
     Crie uma função chamada `isValidEmail`, que será usada na validação do
@@ -108,19 +112,19 @@
         2 caracteres alfanuméricos;
         - O final do domínio é opcional, mas se existir, deve começar com um
         ponto, seguido de no máximo 2 caracteres alfanuméricos.
-    
+     
     Alguns e-mails válidos que podem ser usados para testar:
         - "meu.email+categoria@gmail.com"
         - "juca_malandro@bol.com.br"
         - "pedrobala@hotmail.uy"
         - "sandro@culinaria.dahora"
-    
+     
     Alguns e-mails inválidos:
         - "walter-da-silva@maraca.br"
         - "rita-marica@titica.a.b"
         - "agua_@evida.br.com"
     */
     function isValidEmail(email) {
-        return /[\w\+\.]+@\w+\.\w{2,}(?:\.\w{2,})?/g.test(email);
+        return /^[\w+.]+@\w+\.\w{2,}(?:\.\w{2})?$/m.test(email);
     }
 })(window, document);
