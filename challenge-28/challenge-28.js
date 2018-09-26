@@ -1,4 +1,32 @@
   /*
+  =======peguei do udemy===========
+  Antes de resolver o desafio 28, por favor, leia!
+  Seção 28, aula 170
+  Antes de finalizar essa aula, preciso dar uma notícia muito importante: você vai ver, no desafio 28 - e na resolução do mesmo, no início da aula 29 - que eu pedi para fazer uso da API do ViaCEP.
+
+  Infelizmente houve algumas atualizações recentes nessa API, e ela não está respondendo exatamente da mesma forma que eu mostrei na solução. Provavelmente você terá problemas ao utilizá-la.
+
+  Nesse caso, vou deixar aqui um outro link, de uma outra API, que funciona sem problemas, mas de uma forma um pouco diferente da ViaCEP, ok? =)
+
+  Guarde esse link para usar na hora da solução do desafio 28:
+
+  http://apps.widenet.com.br/busca-cep/api-de-consulta
+
+
+
+  Detalhe: esse problema veio à tona, pois um aluno teve uma dúvida por conta do problema e abriu uma Issue no GitHub.
+
+  Então se você quiser saber mais detalhes sobre o problema, e mais informações sobre o uso dessa nova API, dá uma olhadinha na issue abaixo, fechado? =)
+
+  https://github.com/da2k/curso-javascript-ninja/issues/2048
+
+
+
+  Bom, era só isso :D
+  ===========fim==============
+
+  
+  
   No HTML:
   - Crie um formulário com um input de texto que receberá um CEP e um botão
   de submit;
